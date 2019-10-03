@@ -13,11 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('torrents', 'TransmissionController@index');
-Route::post('torrents/{hash}/start', 'TransmissionController@start');
-Route::post('torrents/{hash}/stop', 'TransmissionController@stop');
-Route::delete('torrents/{hash}', 'TransmissionController@destroy');
-
-Route::get('/user', function (Request $request) {
+Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
-})->middleware('auth:api');
+});
